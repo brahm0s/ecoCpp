@@ -1,0 +1,18 @@
+.PHONY: all clean run
+
+all: economy plot.py
+
+economy: economy.o
+    g++ -o economy economy.o
+
+economy.o: economy.cpp
+    g++ -c economy.cpp
+
+plot.py:
+    python -m py_compile plot.py
+
+run: 
+    ./economy && python plot.py
+
+clean:
+	rm -f *.o *.exe
